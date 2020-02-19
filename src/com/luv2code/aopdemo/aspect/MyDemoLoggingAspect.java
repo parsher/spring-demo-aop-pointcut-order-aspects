@@ -27,6 +27,8 @@ public class MyDemoLoggingAspect {
 	@Pointcut("forDaoPackage() && !(getter() || setter())")
 	private void forDaoPackageNoGetterSetter() {}
 	
+	
+	// before order is undefined, has no order
 	// let's start with and @Before advice
 	@Before("forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice() {	
@@ -38,5 +40,9 @@ public class MyDemoLoggingAspect {
 		System.out.println("\n====> Performing API analytics");
 	}
 	
+	@Before("forDaoPackageNoGetterSetter()")
+	public void logToCloudAsync() {
+		System.out.println("\n====> Logging to Cloud in async fashion");
+	}
 	
 }
